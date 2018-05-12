@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>No.1 - 制作一个简单的菜单动画效果</title>
+	<style>
+		#transition {
+			display: block;
+		}
+		#transition .title {
+			/* 针对IE&FF的宽度限制 */
+			width: 77px;
+			width: max-content;
+			margin-bottom: 20px;
+		}
+		#transition .title h3 {
+			display: inline-block;
+			margin: 0 auto 4px;
+			/* 针对IE&FF的宽度限制 */
+			width: 77px;
+			width: max-content;
+			-ms-transition: color cubic-bezier(0.35, 0.64, 0.67, 0.54) .2s;
+			-moz-transition: color cubic-bezier(0.35, 0.64, 0.67, 0.54) .2s;
+			-webkit-transition: color cubic-bezier(0.35, 0.64, 0.67, 0.54) .2s;
+			transition: color cubic-bezier(0.35, 0.64, 0.67, 0.54) .2s;
+		}
+		#transition .title.active h3 {
+			color: #2ea2f8;
+		}
+		#transition .title h3 + span {
+			display: block;
+			margin: 0 auto;
+			height: 2px;
+			width: 0;
+			/* border-bottom: solid 2px #2ea2f8; */
+			background-color: #2ea2f8;
+			-ms-transition: width cubic-bezier(0.16, 0.57, 0.34, 0.94) .3s;
+			-moz-transition: width cubic-bezier(0.16, 0.57, 0.34, 0.94) .3s;
+			-webkit-transition: width cubic-bezier(0.16, 0.57, 0.34, 0.94) .3s;
+			transition: width cubic-bezier(0.16, 0.57, 0.34, 0.94) .3s;
+		}
+		#transition .title.active h3 + span {
+			width: 100%;
+		}
+		#transition button:active {
+			background: #2ea2f8;
+		}
+		#transition button {
+			background-color: #fff;
+			border-color: #aaa;
+			border-radius: 4px;
+			border-style: solid;
+			border-width: 1px;
+			-ms-transition: background cubic-bezier(0.55, 0.06, 0.68, 0.19) .1s;
+			-moz-transition: background cubic-bezier(0.55, 0.06, 0.68, 0.19) .1s;
+			-webkit-transition: background cubic-bezier(0.55, 0.06, 0.68, 0.19) .1s;
+			transition: background cubic-bezier(0.55, 0.06, 0.68, 0.19) .1s;
+		}
+	</style>
+</head>
+<body>
+	<div id="transition">
+		<div class="title">
+			<h3>前端学院</h3>
+			<span></span>
+		</div>
+		<button>切换样式</button>
+	</div>
+	<script>
+		var tsDiv = document.getElementById('transition');
+		var tsButton = tsDiv.getElementsByTagName('button')[0];
+		var tsTitle = tsDiv.getElementsByClassName('title')[0];
+		var cls = tsTitle.getAttribute('class');
+		tsButton.addEventListener('click', btnOnclick);
+		function btnOnclick () {
+			if (!cls.match(/active$/)) {
+				// cls = cls.concat(' active');
+				cls += ' active';
+			} else {
+				cls = cls.replace(' active','');
+			}
+			tsTitle.setAttribute('class', cls);
+		}
+	</script>
+</body>
+</html>
